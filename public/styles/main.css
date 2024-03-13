@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #061025;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.heading {
+        display: flex;
+        align-items: center;
+}
+    
+.heading img {
+        width: 50px; 
+        height: 50px;
+        margin-right: 10px;
+}
+    
+.heading h1 {
+        font-size: 3em;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 5vh;
+}
+.display-name{
+    font-size: 2em;
+    margin: 30px;
+}
+form,select{
+    margin: 30px;
+}
+#logo{
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+ul {
+    list-style: none;
+    margin-top: 2vh;
+}
+
+ul > li {
+    margin: 1vh 0;
+    border-bottom: 1px solid #061025;
+    padding-bottom: 10px;
+}
+
+span {
+    float: right;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-top: 5vh;
+}
+
+.chart {
+    background-color: #18283B;
+    flex: content;
+    align-items: flex-start;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.coin-details {
+    flex: content;
+    margin-left: 20px;
+    background-color: #18283B;
+    padding: 20px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+#coin {
+    background-color: #18283B;
+    color: whitesmoke;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 25%;
+    margin-right: 20px;
+}
+
+select#coin:focus {
+    border: 2px solid #4973FF;
+    box-shadow: 0 0 5px #4973FF;
+}
+
+button {
+    background-color: #061025;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #4973FF;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #4973FF;
+    color: whitesmoke;
+}
+@media screen and (min-width: 768px) {
+    .container {
+        width: 80%;
+    }
+
+    .display-name {
+        font-size: 2.5em; 
+    }
+
+    section {
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: flex-start; 
+    }
+
+    .chart {
+        width: 60%; 
+    }
+
+    .coin-details {
+        width: 35%; 
+    }
+}
+@media screen and (max-width: 767px) {
+    section {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .chart,
+    .coin-details {
+        width: 100%; 
+        margin-bottom: 20px; 
+    }
+}

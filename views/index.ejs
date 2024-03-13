@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>CryptoSpace</title>
+    <link rel="icon" type="image/png" href="/images/cryptocurrency.png">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        <div >
+        <div class="heading">
+
+            <img src="/images/cryptocurrency.png" alt="Error" id="top-img">
+            <h1>CryptoSpace</h1>
+
+        </div>   
+        
+        <form action="/get-price" method="post" id="form-container"> 
+            <h1>Check real-time price of Top 10 Coins</h1>
+        <select id="coin" name="coin">
+            <option >Select coin</option>
+            <option value="BTC">Bitcoin</option>
+            <option value="ETH">Ethereum</option>
+            <option value="USDT">USDT</option>
+            <option value="MATIC">MATIC</option>
+            <option value="SOL">SOLANA</option>
+            <option value="XRP">XRP</option>
+            <option value="DOGE">DOGE</option>
+            <option value="SHIB">Shiba Inu</option>
+            <option value="AVAX">Avalanche</option>
+            <option value="BNB">BNB</option>
+        </select>
+        <button type="submit">Check</button>
+    </form>
+    <h2 class="display-name"><img src="<%= data.logo %>" id="logo">  <%= data.name %> <%= data.symbol %></h2>
+</div>
+    
+
+<section>
+    <div class="chart">
+        <canvas id="price-trend" width="400" height="400"></canvas>
+    </div>
+
+    <div class="coin-details">
+        <h2>Token Metrics</h2>
+        <ul >
+            <li>Price <span>$<%=  typeof data.price === 'number' ? data.price.toFixed(6) : 'N/A' %></span></li>
+            <li>Market Cap <span><%= data.market_cap %></span></li>
+            <li>Market Cap Diluted <span><%= data.market_cap_diluted %></span></li>
+            <li>Liquidity <span><%= data.liquidity %></span></li>
+            <li>Off Chain Volume <span><%= data.off_chain_volume %></span></li>
+            <li>Volume <span><%= data.volume %></span></li>
+            <li>Volume Change 24h <span><%= typeof data.volume_change_24h === 'number' ? data.volume_change_24h.toFixed(2) : 'N/A' %></span></li>
+            <li>Volume 7 days <span><%= typeof data.volume_7d === 'number' ? data.volume_7d.toFixed(2) : 'N/A' %></span></li>
+            <li>Price Change (24h) <span><%= typeof data.price_change_24h === 'number' ? data.price_change_24h.toFixed(2) : 'N/A' %></span></li>
+            <li>Price Change (1h) <span><%= typeof data.price_change_1h === 'number' ? data.price_change_1h.toFixed(2) : 'N/A' %></span></li>
+            <li>Price Change (7days) <span><%= typeof data.price_change_7d === 'number' ? data.price_change_7d.toFixed(2) : 'N/A' %></span></li>
+            <li>Price Change (1 month) <span><%= typeof data.price_change_1m === 'number' ? data.price_change_1m.toFixed(2) : 'N/A' %></span></li>
+            <li>Price Change (1 year) <span><%= typeof data.price_change_1y === 'number' ? data.price_change_1y.toFixed(2) : 'N/A' %></span></li>
+            <li>Rank <span><%= data.rank %></span></li>
+        </ul>
+        
+    </div>
+</section>
+    </div>
+    
+    
+
+    
+    <script src="index.js"></script>
+    <script>
+        const ctx = document.getElementById("price-trend").getContext("2d");
+        const myChart = new Chart(ctx,{
+            type: "line",
+            data:{
+                labels : ['1y','1m','7d','24h','1h'],
+                datasets : [{
+                    label : 'Price Change',
+                    data:['<%= data.price_change_1y %>','<%= data.price_change_1m %>','<%= data.price_change_7d %>','<%= data.price_change_24h %>','<%= data.price_change_1h %>'],
+                    fill: false,
+                    borderColor : '#4973FF',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#4973FF',
+                    pointBorderColor: '#4973FF',
+                    pointRadius: 5, 
+                    pointHoverRadius: 2, 
+                    tension: 0.4
+                }]
+            }
+            ,
+            options : {
+                scales : {
+                    y : {
+                        beginAtZero : false
+                    }
+                },
+                plugins: {
+            legend: {
+                labels: {
+                    color: 'white'
+                }
+            }
+        }
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
